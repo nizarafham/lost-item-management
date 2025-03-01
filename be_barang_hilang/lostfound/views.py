@@ -12,9 +12,11 @@ class IsAdminUser(BasePermission):
     def has_permission(self, request, view):
         return request.user and request.user.is_staff 
 
+
 class CategoryListCreateView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
 
     def get_permissions(self):
         if self.request.method == "POST": 
@@ -30,6 +32,7 @@ class LostItemListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 class FoundItemListCreateView(generics.ListCreateAPIView):
     queryset = FoundItem.objects.all()
     serializer_class = FoundItemSerializer
@@ -38,8 +41,10 @@ class FoundItemListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 def similarity(a, b):
     return SequenceMatcher(None, a.lower(), b.lower()).ratio()
+
 
 class MatchUserLostItemsView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -66,6 +71,7 @@ class MatchUserLostItemsView(APIView):
 
         return Response({"matches": matched_results})
 
+
 class CancelLostItemView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -76,6 +82,7 @@ class CancelLostItemView(APIView):
             return Response({"message": "Laporan kehilangan berhasil dibatalkan"}, status=200)
         except LostItem.DoesNotExist:
             return Response({"error": "Laporan tidak ditemukan atau bukan milik Anda"}, status=404)
+
 
 class GenerateQRCodeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -91,6 +98,7 @@ class GenerateQRCodeView(APIView):
         verification.save()
 
         return Response({"qr_code_url": verification.qr_code.url})
+
 
 class VerifyItemView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -109,6 +117,7 @@ class VerifyItemView(APIView):
         verification.save()
 
         return Response({"message": "Barang berhasil diverifikasi"})
+
 
 class VerificationHistoryView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -140,6 +149,7 @@ class VerificationHistoryView(APIView):
 
         return Response(data)
 
+
 class NotificationListView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -160,6 +170,7 @@ class NotificationListView(APIView):
         } for notification in notifications]
 
         return Response(data)
+
 
 class MarkNotificationAsReadView(APIView):
     permission_classes = [permissions.IsAuthenticated]
