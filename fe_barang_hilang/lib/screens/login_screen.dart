@@ -31,72 +31,99 @@ class _LoginScreenState extends State<LoginScreen> {
           return Padding(
             padding: const EdgeInsets.all(20.0),
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.lock_outline, size: 80, color: Colors.blue),
-                  SizedBox(height: 20),
-                  Text(
-                    "Login Lost & Found",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 30),
-                  TextField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: "Email",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.email),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Image.asset(
+                    //   'assets/images/login_illustration.png', // Ganti dengan path gambar Anda
+                    //   height: 150,
+                    // ),
+                    Text("LOGO OLIVIA"),
+                    SizedBox(height: 20),
+                    Text(
+                      "Login OLIVIA",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
                     ),
-                  ),
-                  SizedBox(height: 15),
-                  TextField(
-                    controller: passwordController,
-                    obscureText: !isPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isPasswordVisible = !isPasswordVisible;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        BlocProvider.of<AuthBloc>(context).add(
-                          LoginEvent(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
+                    SizedBox(height: 30),
+                    TextField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: "Email",
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+                        prefixIcon: Icon(Icons.email, color: Colors.blue),
                       ),
-                      child: state is AuthLoading
-                          ? CircularProgressIndicator(color: Colors.white)
-                          : Text(
-                              "Login",
-                              style: TextStyle(fontSize: 18),
-                            ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 15),
+                    TextField(
+                      controller: passwordController,
+                      obscureText: !isPasswordVisible,
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        prefixIcon: Icon(Icons.lock, color: Colors.blue),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.blue,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isPasswordVisible = !isPasswordVisible;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          BlocProvider.of<AuthBloc>(context).add(
+                            LoginEvent(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: state is AuthLoading
+                            ? CircularProgressIndicator(color: Colors.white)
+                            : Text(
+                                "Login",
+                                style: TextStyle(fontSize: 18, color: Colors.white),
+                              ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () {
+                        // Navigate to forgot password screen
+                      },
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
