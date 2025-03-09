@@ -1,5 +1,0 @@
-django
-djangoframeworkrestapi
-pillow
-mysqlclient
-qrcode

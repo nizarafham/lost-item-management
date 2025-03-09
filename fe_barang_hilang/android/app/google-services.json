@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "462027147690",
+    "project_id": "olivia-bec5b",
+    "storage_bucket": "olivia-bec5b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462027147690:android:bbb6a8c6c936e70fd083d3",
+        "android_client_info": {
+          "package_name": "com.example.fe_barang_hilang"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaH8BpoZjm6CBF9odCQogt9KXIo3rnZuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
