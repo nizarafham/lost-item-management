@@ -53,7 +53,7 @@ class ItemController extends Controller
         $firebaseUid = $request->attributes->get('firebaseUid');
 
         $foundItem = FoundItem::create([
-            'user_id' => $firebaseUid, // Simpan Firebase UID
+            'user_id' => $firebaseUid, 
             'category_id' => $request->category_id,
             'description' => $request->description,
             'location' => $request->location,
